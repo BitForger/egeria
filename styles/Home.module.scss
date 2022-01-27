@@ -1,13 +1,9 @@
-body {
-  margin: 0;
-}
-
 .card-container {
   grid-row: 2;
   grid-column: auto;
 }
 
-a {
+a.card {
   text-decoration: none;
 }
 
@@ -39,6 +35,16 @@ a {
     .card-content__title {
       flex: 1 0 auto;
       margin: 0 5px;
+    }
+
+    .card-content__image-container {
+      flex: 1 1 auto;
+
+      img {
+
+        max-height: 24px;
+        max-width: 24px;
+      }
     }
   }
 }

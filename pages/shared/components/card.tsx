@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faBars } from "@fortawesome/free-solid-svg-icons";
 import { ComponentProps } from "react";
 
 export interface CardProps extends ComponentProps<any> {
@@ -7,6 +7,7 @@ export interface CardProps extends ComponentProps<any> {
   backgroundColor?: string;
   textColor?: string;
   url: string;
+  image: string;
 }
 
 const getRandomIndex = (arr: Array<any>) => {
@@ -28,27 +29,32 @@ export default function Card(props: CardProps) {
   const backgroundColor: string = props.backgroundColor ?? combo[0];
   const textColor: string = props.textColor ?? combo[1];
   return (
-    <>
-      {props.children ? (
-        props.children
-      ) : (
-        <a
-          href={props.url}
-          rel={"noreferrer"}
-          target={"_blank"}
-          className={"card"}
-          style={{ background: backgroundColor }}
-        >
-          <span className={"card-content__title"} style={{ color: textColor }}>
-            {props.title}
-          </span>
+    <a
+      href={props.url}
+      rel={"noreferrer"}
+      target={"_blank"}
+      className={"card"}
+      style={{ background: backgroundColor }}
+    >
+      <div className={"card-content__image-container"}>
+        {props.image ? (
+          <img src={props.image} alt="" className={"card-content__image"} />
+        ) : (
           <FontAwesomeIcon
-            icon={faArrowRight}
-            color={textColor}
-            className={"card-content__arrow"}
+            icon={faBars}
+            style={{ color: textColor }}
+            className={"card-content__image"}
           />
-        </a>
-      )}
-    </>
+        )}
+      </div>
+      <span className={"card-content__title"} style={{ color: textColor }}>
+        {props.title}
+      </span>
+      <FontAwesomeIcon
+        icon={faArrowRight}
+        color={textColor}
+        className={"card-content__arrow"}
+      />
+    </a>
   );
 }
